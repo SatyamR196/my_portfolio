@@ -7,6 +7,7 @@ export default defineConfig(() => ({
   server: {
     host: true, // or '0.0.0.0' for full exposure
     port: 5173, // optional, can specify your own port
+    historyApiFallback: true,
   },
   plugins: [react(),tailwindcss(),],
   resolve: {
@@ -15,4 +16,5 @@ export default defineConfig(() => ({
     },
   },
   base: '/my_portfolio/',
+
 }));

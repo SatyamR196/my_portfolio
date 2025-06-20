@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: 
+**URL** : 
 
 ## What technologies are used for this project?
 

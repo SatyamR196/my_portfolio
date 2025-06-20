@@ -39,12 +39,14 @@ const AboutSection = () => {
                 <div  className="relative">
                   <ScratchToReveal gradientColors={["#A97CF8", "#F38CB8", "#FDCC92"]} minScratchPercentage={50}>
                     <img
-                      src="/my_pic_short.png"
+                      src={`${import.meta.env.BASE_URL}my_pic_short.png`}
+                      // src="/my_pic_short.png"
                       alt="Profile"
                       className="w-full aspect-3/4 object-cover absolute z-2 animate-fadeImg1" 
                     />
                     <img
-                      src="/formal_img_crop_fit.png"
+                      src={`${import.meta.env.BASE_URL}formal_img_crop_fit.png`}
+                      // src="/formal_img_crop_fit.png"
                       alt="Profile"
                       className="w-full aspect-3/4 object-cover"
                     />

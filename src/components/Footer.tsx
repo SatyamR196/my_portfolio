@@ -11,7 +11,7 @@ const Footer = () => {
           
           <div className="flex justify-center space-x-6">
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/satyam-rahangdale" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-600 transition-colors duration-200"
@@ -19,13 +19,13 @@ const Footer = () => {
               <Linkedin className="w-5 h-5" />
             </a>
             <a 
-              href="mailto:your.email@example.com"
+              href="mailto:satyamrahangdale196@gmail.com"
               className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-600 transition-colors duration-200"
             >
               <Mail className="w-5 h-5" />
             </a>
             <a 
-              href="https://github.com" 
+              href="https://github.com/SatyamR196" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-600 transition-colors duration-200"

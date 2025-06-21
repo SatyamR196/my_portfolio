@@ -5,18 +5,17 @@ import { Card, CardContent } from '@/components/ui/card';
 import { User, Code, Palette, Zap } from 'lucide-react';
 import { ScratchToReveal } from "@/components/magicui/scratch-to-reveal";
 
-const AboutSection = () => {
-  const [scrollY, setScrollY] = useState(0);
+const AboutSection = ({ scrollY }: { scrollY: number }) => {
+  // const [scrollY, setScrollY] = useState(0);
   
-    useEffect(() => {
-      const handleScroll = () => {
-        setScrollY(window.scrollY);
-      };
+  //   useEffect(() => {
+  //     const handleScroll = () => {
+  //       setScrollY(window.scrollY);
+  //     };
   
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+  //     window.addEventListener('scroll', handleScroll);
+  //     return () => window.removeEventListener('scroll', handleScroll);
+  //   }, []);
 
   return (
     <section id="about" className="py-15 bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden">

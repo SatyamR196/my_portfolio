@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { log } from "console";
 import { motion, useAnimation } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -26,11 +27,13 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
   const canvasRef = useRef(null);
   const parentRef = useRef(null);
   const [isScratching, setIsScratching] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
+  // const isScratching = useRef(false);
+  const isCompleteRef = useRef(false);
 
   const controls = useAnimation();
-
+  //! UseEffect for re-painting the scratch card to original
   useEffect(() => {
+    if (isCompleteRef.current) return;
     const canvas = canvasRef.current;
     const parent = parentRef.current;
     if (canvas && parent) {
@@ -95,6 +98,7 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
       document.removeEventListener("touchend", handleDocumentTouchEnd);
       document.removeEventListener("touchcancel", handleDocumentTouchEnd);
     };
+    
   }, [isScratching]);
 
   const handleMouseDown = () => setIsScratching(true);
@@ -106,8 +110,8 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
     const ctx = canvas?.getContext("2d");
     if (canvas && ctx) {
       const rect = canvas.getBoundingClientRect();
-      const x = clientX - rect.left ;
-      const y = clientY - rect.top ;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
       ctx.globalCompositeOperation = "destination-out";
       ctx.beginPath();
       ctx.arc(x, y, 40, 0, Math.PI * 2);
@@ -129,7 +133,7 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
   };
 
   const checkCompletion = () => {
-    if (isComplete) return;
+    if (isCompleteRef.current) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
@@ -146,7 +150,7 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
       const percentage = (clearPixels / totalPixels) * 100;
 
       if (percentage >= minScratchPercentage) {
-        setIsComplete(true);
+        isCompleteRef.current = true; // 👈 update only the ref
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         startAnimation();
       }
@@ -165,15 +169,15 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
       animate={controls}
     >
       <div ref={parentRef} style={{ position: "relative" }}>
-      <canvas
-        ref={canvasRef}
-        width={width}
-        height={height}
-        className="absolute z-10 left-0 top-0 h-full w-full  "
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-      ></canvas>
-      {children}
+        <canvas
+          ref={canvasRef}
+          width={width}
+          height={height}
+          className="absolute z-10 left-0 top-0 h-full w-full  "
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+        ></canvas>
+        {children}
       </div>
     </motion.div>
   );

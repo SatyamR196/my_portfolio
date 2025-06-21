@@ -6,11 +6,16 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ResumeSection from '@/components/ResumeSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import { Parallax } from 'react-scroll-parallax';
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
-import ParallaxWrapper from '@/components/ParallaxWrapper';
 
 const Index = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen ">
@@ -18,10 +23,10 @@ const Index = () => {
       <Navigation />
       <ScrollProgress className="h-1" />
       <main>
-          <div id="home">
-            <Hero />
-          </div>
-          <AboutSection />
+        <div id="home">
+          <Hero />
+        </div>
+        <AboutSection scrollY={scrollY}/>
         <ProjectsSection />
         <ResumeSection />
         <ContactSection />

@@ -54,8 +54,6 @@ const ResumeSection = () => {
         }}
       />
       
-
-        <h1>HI</h1>
       <div className="max-w-6xl mx-auto px-4 relative z-9">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Resume & CV</h2>

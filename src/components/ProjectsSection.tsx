@@ -1,9 +1,20 @@
 
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import ProjectImage from './ProjectImage';
 import ProjectDetails from './ProjectDetails';
 
 const ProjectsSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+      
+        useEffect(() => {
+          const handleScroll = () => {
+            setScrollY(window.scrollY);
+          };
+      
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
   const projects = [
   {
     title: "ASR FairBench",
@@ -139,8 +150,61 @@ const ProjectsSection = () => {
 
 
   return (
-    <section id="projects" className="pb-10 md:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-5 md:px-4">
+    <section id="projects" className="pb-10 md:py-20 bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden">
+      
+      {/* Parallax Background Elements */}
+      <div 
+        className="absolute top-10 right-10 w-40 h-40 bg-blue-200 rounded-full opacity-30"
+        style={{
+          transform: `translateY(${scrollY * 0.1}px) translateX(${scrollY * -0.05}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-1/3 left-10 w-24 h-24 bg-cyan-200 rounded-full opacity-30"
+        style={{
+          transform: `translateY(${scrollY * 0.15}px) translateX(${scrollY * 0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute bottom-20 right-1/4 w-32 h-32 bg-indigo-100 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * 0.12}px) translateX(${scrollY * -0.06}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-1/2 right-1/3 w-16 h-16 bg-sky-200 rounded-full opacity-35"
+        style={{
+          transform: `translateY(${scrollY * 0.2}px) translateX(${scrollY * 0.1}px)`,
+        }}
+      />
+
+      <div 
+        className="absolute top-50 right-90 w-30 h-30 bg-red-300 rounded-full opacity-20"
+        style={{
+          transform: `translateY(${scrollY * 0.15}px) translateX(${scrollY * -0.1}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-1/6 left-60 w-60 h-60 bg-emerald-300 rounded-full opacity-20"
+        style={{
+          transform: `translateY(${scrollY * 0.15}px) translateX(${scrollY * 0.1}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-3/4 right-4/12 w-32 h-32 bg-indigo-300 rounded-full opacity-55"
+        style={{
+          transform: `translateY(${scrollY * 0.12}px) translateX(${scrollY * -0.06}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-5/12 right-5/12 w-40 h-40 bg-teal-400 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * 0.2}px) translateX(${scrollY * -0.1}px)`,
+        }}
+      />
+      
+      {/* {Main content} */}
+      <div className="max-w-6xl mx-auto px-5 md:px-4 relative z-9">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Latest Works</h2>
           <div className="w-24 h-1 bg-cyan-600 mx-auto rounded-full"></div>

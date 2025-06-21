@@ -1,30 +1,59 @@
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import React from "react";
 import { Card, CardContent } from '@/components/ui/card';
 import { User, Code, Palette, Zap } from 'lucide-react';
 import { ScratchToReveal } from "@/components/magicui/scratch-to-reveal";
 
 const AboutSection = () => {
-  let [isReal, setIsReal] = useState(true);
-  let [isScratched, setIsScratched] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        setScrollY(window.scrollY);
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-  const handleImg = () => {
-    // if (isScratched) setIsReal(!isReal);
-    setIsReal(!isReal);
-  }
-  const handleScratch = () => {
-    // if (!isScratched) {
-    //   setTimeout(() => setIsScratched(true), 1000);
-    // }
-    setTimeout(() => { 
-      setIsReal(!isReal);
-      console.log(isReal)
-    }, 10000);
-  }
+
   return (
-    <section id="about" className="py-15 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="about" className="py-15 bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden">
+      {/* Parallax Background Elements */}
+      <div 
+        className="absolute top-10 right-10 w-50 h-50 bg-teal-200 rounded-full opacity-20"
+        style={{
+          transform: `translateY(${scrollY * 0.1}px) translateX(${scrollY * -0.2}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-1/3 left-10 w-24 h-24 bg-cyan-200 rounded-full opacity-30"
+        style={{
+          transform: `translateY(${scrollY * 0.15}px) translateX(${scrollY * 0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-5/6 left-120 w-24 h-24 bg-red-400 rounded-full opacity-20"
+        style={{
+          transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute bottom-20 right-1/4 w-32 h-32 bg-pink-300 rounded-full opacity-15"
+        style={{
+          transform: `translateY(${scrollY * 0.12}px) translateX(${scrollY * -0.06}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-1/2 right-1/3 w-16 h-16 bg-sky-200 rounded-full opacity-35"
+        style={{
+          transform: `translateY(${scrollY * 0.2}px) translateX(${scrollY * 0.1}px)`,
+        }}
+      />
+      
+      
+      <div className="max-w-6xl mx-auto px-4 relative z-9">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
           <div className="w-24 h-1 bg-cyan-600 mx-auto rounded-full mb-4"></div>

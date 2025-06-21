@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -9,9 +9,54 @@ const ResumeSection = () => {
   const [isResumeDialogOpen, setIsResumeDialogOpen] = useState(false);
   const [isCVDialogOpen, setIsCVDialogOpen] = useState(false);
 
+  const [scrollY, setScrollY] = useState(0);
+        
+          useEffect(() => {
+            const handleScroll = () => {
+              setScrollY(window.scrollY);
+            };
+        
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+          }, []);
+
   return (
-    <section id="resume" className="py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="resume" className="py-20 bg-gray-50 relative overflow-hidden">
+      {/* Parallax Background Elements */}
+      <div 
+        className="absolute top-0 right-0 w-40 h-40 bg-teal-200 rounded-full opacity-30"
+        style={{
+          transform: `translateY(${scrollY * 0.1}px) translateX(${scrollY * -0.05}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-[-600px] left-0 w-30 h-30 bg-purple-400 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * 0.15}px) translateX(${scrollY * 0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-[800px] left-120 w-24 h-24 bg-emerald-300 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-[800px] left-380 w-45 h-45 bg-red-300 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-[800px] left-390 w-450 h-450 bg-red-300 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.08}px)`,
+        }}
+      />
+      
+
+        <h1>HI</h1>
+      <div className="max-w-6xl mx-auto px-4 relative z-9">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Resume & CV</h2>
           <div className="w-24 h-1 bg-cyan-600 mx-auto rounded-full mb-4"></div>

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -44,9 +44,47 @@ const ContactSection = () => {
     }));
   };
 
+  const [scrollY, setScrollY] = useState(0);
+          
+            useEffect(() => {
+              const handleScroll = () => {
+                setScrollY(window.scrollY);
+              };
+          
+              window.addEventListener('scroll', handleScroll);
+              return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
   return (
-    <section id="contact" className="py-10 md:py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="contact" className="py-10 md:py-20 bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden">
+      
+      {/* Parallax Background Elements */}
+      <div 
+        className="absolute top-[-700px] left-0 w-30 h-30 bg-purple-400 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * 0.15}px) translateX(${scrollY * 0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-[1200px] left-120 w-80 h-80 bg-emerald-300 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-[100px] left-250 w-120 h-120 bg-teal-200 rounded-full opacity-20"
+        style={{
+          transform: `translateY(${scrollY * 0.1}px) translateX(${scrollY * -0.08}px)`,
+        }}
+      />
+      <div 
+        className="absolute top-[1000px] left-390 w-30 h-30 bg-red-300 rounded-full opacity-25"
+        style={{
+          transform: `translateY(${scrollY * -0.15}px) translateX(${scrollY * -0.08}px)`,
+        }}
+      />
+      
+      <div className="max-w-6xl mx-auto px-4 relative z-9">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Let's Connect</h2>
           <div className="w-24 h-1 bg-cyan-600 mx-auto rounded-full mb-4"></div>

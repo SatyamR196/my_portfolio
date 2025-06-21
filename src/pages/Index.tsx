@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import AboutSection from '@/components/AboutSection';
@@ -5,18 +6,22 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ResumeSection from '@/components/ResumeSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { Parallax } from 'react-scroll-parallax';
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import ParallaxWrapper from '@/components/ParallaxWrapper';
 
 const Index = () => {
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen ">
+
       <Navigation />
-      <ScrollProgress className="h-1"/>
+      <ScrollProgress className="h-1" />
       <main>
-        <div id="home">
-          <Hero />
-        </div>
-        <AboutSection />
+          <div id="home">
+            <Hero />
+          </div>
+          <AboutSection />
         <ProjectsSection />
         <ResumeSection />
         <ContactSection />

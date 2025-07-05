@@ -46,7 +46,7 @@ const ProjectsSection = () => {
       `${import.meta.env.BASE_URL}Colorful_Com/python_light.png`,
     ],
     technologies: ["Google Colab", "Onecompiler", "OnlineGDB", "Codechef IDE", "Programiz IDE", "Algozenith IDE"],
-    Link: "https://github.com/SatyamR196/colorful_comments_extension"
+    Link: "https://chromewebstore.google.com/detail/colorful-comments-for-onl/paijnfjnkambpoachfeednfhpchfbjfo?authuser=0&hl=en"
   },
   {
     title: "CDC Noticeboard",

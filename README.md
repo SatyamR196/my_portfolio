@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL** : 
+**URL** : [Click Me](https://satyamr196.github.io/my_portfolio/)
 
 ## What technologies are used for this project?
 
